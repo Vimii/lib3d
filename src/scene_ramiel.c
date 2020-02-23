@@ -297,32 +297,32 @@ static void transition(l3Environment *env, int frame)
 
         bezier camera_bezier = l3GetBezierCurve(l3TimeTransition(l3TimeType_EasyEase, frame, 0, keyframe6), 8, cpoint);
 
-        env->camera.coordinate[0] = camera_bezier.x;
-        env->camera.coordinate[1] = camera_bezier.y;
-        env->camera.coordinate[2] = camera_bezier.z;
-        env->camera.target[0] = 0;
-        env->camera.target[1] = 250;
-        env->camera.target[2] = 0;
+        // env->camera.coordinate[0] = camera_bezier.x;
+        // env->camera.coordinate[1] = camera_bezier.y;
+        // env->camera.coordinate[2] = camera_bezier.z;
+        // env->camera.target[0] = 0;
+        // env->camera.target[1] = 250;
+        // env->camera.target[2] = 0;
 
-        // if (frame >= keyframe6)
-        // {
+        if (frame >= keyframe6)
+        {
 
-        //     env->camera.coordinate[0] = 500 + 20 * rand();
-        //     env->camera.coordinate[1] = 300 + 20 * rand();
-        //     env->camera.coordinate[2] = -500 + 20 * rand();
-        //     env->camera.target[0] = 0 + 20 * rand();
-        //     env->camera.target[1] = 250 + 20 * rand();
-        //     env->camera.target[2] = 0 + 20 * rand();
-        // }
-        // else
-        // {
-        //     env->camera.coordinate[0] = camera_bezier.x;
-        //     env->camera.coordinate[1] = camera_bezier.y;
-        //     env->camera.coordinate[2] = camera_bezier.z;
-        //     env->camera.target[0] = 0;
-        //     env->camera.target[1] = 250;
-        //     env->camera.target[2] = 0;
-        // }
+            env->camera.coordinate[0] = 500 + 20 * sin((frame-keyframe6)/5.0*2.0*PI);
+            env->camera.coordinate[1] = 300 + 20 * sin((frame-keyframe6)/3.0*2.0*PI);
+            env->camera.coordinate[2] = -500 + 20 * sin((frame-keyframe6)/4.0*2.0*PI);
+            env->camera.target[0] = 0 + 20 * sin((frame-keyframe6)/6.0*2.0*PI);
+            env->camera.target[1] = 250 + 20 * sin((frame-keyframe6)/2.0*2.0*PI);
+            env->camera.target[2] = 0 + 20 * sin((frame-keyframe6)/3.0*2.0*PI);
+        }
+        else
+        {
+            env->camera.coordinate[0] = camera_bezier.x;
+            env->camera.coordinate[1] = camera_bezier.y;
+            env->camera.coordinate[2] = camera_bezier.z;
+            env->camera.target[0] = 0;
+            env->camera.target[1] = 250;
+            env->camera.target[2] = 0;
+        }
     }
 }
 
@@ -800,7 +800,7 @@ int scene_ramiel(int argc, const char *argv[], l3Options *options)
                 {
                     l3SetTransposeObject(b01, (q + 5.0) * 80 * cos(j / n * 2.0 * PI), 20.0, (q + 5.0) * 80 * sin(j / n * 2.0 * PI));
                     l3SetScaleObject(b01, 20 + (rand() % 5) * 5, 50 + (rand() % 10) * 20, 20 + (rand() % 5) * 5);
-                    l3AddObjectToEnvironment(&env, b02, "box02");
+                    // l3AddObjectToEnvironment(&env, b02, "box02");
                 }
             }
         }
